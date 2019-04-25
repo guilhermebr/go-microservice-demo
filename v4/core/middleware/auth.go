@@ -10,19 +10,16 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
-type AuthUser struct {
+type Auth struct {
 	Email string `json:"email"`
 	Role  string `json:"role"`
 }
 
-func GetUser(r *http.Request) AuthUser {
-	var authUser AuthUser
-
-	decoded := context.Get(r, "decoded")
-
-	mapstructure.Decode(decoded.(jwt.MapClaims), &authUser)
-
-	return authUser
+func GetUser(r *http.Request) Auth {
+	var user Auth
+	claim := context.Get(r, "claims")
+	mapstructure.Decode(claim.(jwt.MapClaims), &user)
+	return user
 }
 
 func ValidateToken(secretKey string, next http.HandlerFunc) http.HandlerFunc {
@@ -57,7 +54,7 @@ func ValidateToken(secretKey string, next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		context.Set(r, "decoded", token.Claims)
+		context.Set(r, "claims", token.Claims)
 		next(w, r)
 	})
 }
