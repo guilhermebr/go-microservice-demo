@@ -41,12 +41,12 @@ func (s *Service) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if user.Email == "" {
-		AlertUserNotFound.Send(w)
+		AlertUserOrPasswordWrong.Send(w)
 		return
 	}
 
 	if !user.CheckPasswordHash(form.Password) {
-		AlertUserWrongPassword.Send(w)
+		AlertUserOrPasswordWrong.Send(w)
 		return
 	}
 

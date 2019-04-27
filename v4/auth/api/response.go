@@ -6,10 +6,10 @@ import (
 )
 
 var (
-	AlertUserNotFound      = Alert{StatusCode: http.StatusOK, Type: "user_not_found", Message: "The informed user has no registration"}
-	AlertUserWrongPassword = Alert{StatusCode: http.StatusOK, Type: "user_wrong_password", Message: "Wrong password"}
-	AlertMissingData       = Alert{StatusCode: http.StatusBadRequest, Type: "missing_data", Message: "Missing required Data"}
-	AlertExistingData      = Alert{StatusCode: http.StatusOK, Type: "existing_data", Message: "Data already exists"}
+	AlertUserNotFound        = Alert{StatusCode: http.StatusOK, Type: "user_not_found", Message: "The informed user has no registration"}
+	AlertUserOrPasswordWrong = Alert{StatusCode: http.StatusOK, Type: "user_or_password_wrong", Message: "Wrong user or password"}
+	AlertMissingData         = Alert{StatusCode: http.StatusBadRequest, Type: "missing_data", Message: "Missing required Data"}
+	AlertExistingData        = Alert{StatusCode: http.StatusOK, Type: "existing_data", Message: "Data already exists"}
 )
 
 // Alert type
